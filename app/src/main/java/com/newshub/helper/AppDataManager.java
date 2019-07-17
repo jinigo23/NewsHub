@@ -52,7 +52,7 @@ public class AppDataManager {
         return gridItems;
     }
 
-    public void showAlert(final Context context, final Activity activity, final String[] popup) {
+    public boolean showAlert(final Context context, final String[] popup) {
         View view= LayoutInflater.from (context).inflate (R.layout.popup_window_list, null);
         final ListView itemList=(ListView)view.findViewById (R.id.dialogList);
         AlertDialog.Builder builder = new AlertDialog.Builder (context);
@@ -62,10 +62,11 @@ public class AppDataManager {
         itemList.setOnItemClickListener (new AdapterView.OnItemClickListener ( ) {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Activity activity=(Activity)context;
                 String clickedItem=itemList.getItemAtPosition (position).toString ();
                 Intent intent=new Intent ();
                 intent.putExtra ("Clicked Item", clickedItem);
-                activity.setResult (1, intent);
+                activity.setResult (Activity.RESULT_OK, intent);
                 Log.d ("Clicked", "Item :: "+clickedItem);
                 Toast.makeText (context, "Clicked \t"+clickedItem, Toast.LENGTH_LONG).show ();
             }
@@ -78,5 +79,6 @@ public class AppDataManager {
             }
         });*/
         builder.show ();
+        return true;
     }
 }

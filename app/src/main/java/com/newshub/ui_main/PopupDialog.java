@@ -9,18 +9,46 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.newshub.R;
+import com.newshub.helper.AlertAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PopupDialog extends DialogFragment {
 
+    private ArrayList<String> popupList;
+
     public PopupDialog() {
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        String[] popups=getArguments ().getStringArray ("Brands_Popup");
+        popupList=new ArrayList<> (Arrays.asList (popups));
+        return inflater.inflate (R.layout.popup_window_list, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated (view, savedInstanceState);
+        ListView dialogList=view.findViewById (R.id.dialogList);
+//        AlertAdapter adapter=new AlertAdapter (getContext (), )
+        AlertDialog.Builder builder = new AlertDialog.Builder (getContext ());
+        ArrayAdapter<String> adapter=new ArrayAdapter<String> (getContext (), R.layout.popup_window_view, popupList);
+        dialogList.setAdapter (adapter);
+        builder.setView (view);
+        builder.show ();
+    }
+
+    /*public PopupDialog() {
     }
 
     public static PopupDialog newInstance(String title) {
@@ -52,5 +80,5 @@ public class PopupDialog extends DialogFragment {
         });
 
         return builder.create ();
-    }
+    }*/
 }

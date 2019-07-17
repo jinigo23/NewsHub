@@ -1,5 +1,6 @@
 package com.newshub.ui_main;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.newshub.helper.AlertAdapter;
 import com.newshub.helper.AppDataManager;
 import com.newshub.helper.NewsDBHelper;
 import com.newshub.R;
@@ -93,25 +95,34 @@ public class MainActivity extends AppCompatActivity {
                 switch (menu.getId ( )) {
                     case CODE_BRAND:
 
-                        AppDataManager.getInstance ( ).showAlert (MainActivity.this, MainActivity.this,  brandsPopup);
-                        intent = getIntent ( );
-                        String clickedItem = intent.getStringExtra ("Clicked Item");
-                        startActivityForResult (intent, 1);
+                        Bundle bundle=new Bundle ();
+                        bundle.putStringArray ("Brands_Popup", brandsPopup);
+                        bundle.putStringArray ("Customer_Popup", customerPopup);
+                        PopupDialog popupDialog=new PopupDialog ();
+                        popupDialog.setArguments (bundle);
+                        popupDialog.show (getSupportFragmentManager (), "FRAGMENT_TAG");
+
+                        /*boolean isClicked = AppDataManager.getInstance ( ).showAlert (MainActivity.this, brandsPopup);
+                        if (isClicked == false) {
+                            intent = getIntent ( );
+                            startActivityForResult (intent, 1);
+                            String clickedItem = intent.getStringExtra ("Clicked Item");
 //                        Log.d ("Clicked", "Item :: "+clickedItem);
 
-                        if (clickedItem.equals (Arrays.asList (brandsPopup).contains ("Add"))) {
-                            intent = new Intent (MainActivity.this, BrandsAddActivity.class);
-                            startActivity (intent);
-                        } else if (clickedItem.equals (Arrays.asList (brandsPopup).contains ("View"))) {
-                            intent = new Intent (MainActivity.this, BrandsViewActivity.class);
-                            startActivity (intent);
-                        }
+                            if (clickedItem.equals (Arrays.asList (brandsPopup).contains ("Add"))) {
+                                intent = new Intent (MainActivity.this, BrandsAddActivity.class);
+                                startActivity (intent);
+                            } else if (clickedItem.equals (Arrays.asList (brandsPopup).contains ("View"))) {
+                                intent = new Intent (MainActivity.this, BrandsViewActivity.class);
+                                startActivity (intent);
+                            }
+                        }*/
 
-                        if (clickedItem == null) {
-                            Snackbar.make (findViewById (android.R.id.content), "Select", Snackbar.LENGTH_LONG).setAction ("Action", null).show ();
+                        /*if (clickedItem == null) {
+                            Snackbar.make (findViewById (android.R.id.content), "Select", Snackbar.LENGTH_LONG).setAction ("Action", null).show ( );
                         } else {
 
-                        }
+                        }*/
                         /*Bundle bundle=new Bundle ();
                         bundle.putStringArray ("Brands", brandsPopup);
                         Fragment fragment=new Fragment ();
@@ -322,8 +333,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult (requestCode, resultCode, data);
         if (requestCode == 1) {
-            String clickedItem = intent.getStringExtra ("Clicked Item");
-            Log.d ("Clicked", "Item :: "+clickedItem);
+            if (resultCode == Activity.RESULT_OK) {
+                String clickedItem = intent.getStringExtra ("Clicked Item");
+                Log.d ("Clicked", "Item :: " + clickedItem);
+            }
         }
     }
 }
