@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">NewsHub</string>
+
+
+    <!--List items Text size -->
+    <string name="Text_size">16dp</string>
+    <string name="title_activity_customer_payment_search">Search Customer</string>
+    <string name="title_activity_customer_payment">Customer Payments</string>
+    <string name="title_activity_customer_payment_add">Add Customer Payments</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_register">Register</string>
+    <string name="title_activity_create_pin">Create PIN</string>
+    <string name="title_activity_blocked">Blocked</string>
+    <string name="title_activity_add_customer">Add Customer</string>
+    <string name="title_activity_view_customer">Customer</string>
+    <string name="title_activity_brands_view">View Brands</string>
+    <string name="title_activity_brands_add">Add Brands</string>
+    <string name="title_activity_location_add">Add Location</string>
+    <string name="title_activity_location_view">Locations</string>
+    <string name="title_activity_my_payments_view">My Payments</string>
+    <string name="title_activity_my_payments_add">Add My Payments</string>
+
+</resources>

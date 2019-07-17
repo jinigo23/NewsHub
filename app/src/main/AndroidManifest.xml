@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.newshub">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui_customer_payment.CustomerPaymentSearchActivity"
+            android:label="@string/title_activity_customer_payment_search"
+            android:parentActivityName=".ui_main.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.newshub.ui_main.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui_customer_report.CustomerReportActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".ui_customer_payment.CustomerPaymentViewActivity" android:label="@string/title_activity_customer_payment"/>
+        <activity android:name=".ui_customer_payment.CustomerPaymentAddActivity" android:label="@string/title_activity_customer_payment_add"/>
+        <activity android:name=".ui_location.LocationViewActivity" android:label="@string/title_activity_location_view"
+            android:parentActivityName=".ui_main.MainActivity"/>
+        <activity android:name=".ui_location.LocationAddActivity" android:label="@string/title_activity_location_add"/>
+        <activity android:name=".ui_customer.CustomerViewActivity" android:label="@string/title_activity_view_customer"
+            android:parentActivityName=".ui_main.MainActivity"/>
+        <activity android:name=".ui_customer.CustomerAddActivity" android:label="@string/title_activity_add_customer"/>
+        <activity android:name=".ui_my_payment.MyPaymentsViewActivity" android:label="@string/title_activity_my_payments_view"
+            android:parentActivityName=".ui_main.MainActivity"/>
+        <activity android:name=".ui_my_payment.MyPaymentsAddActivity" android:label="@string/title_activity_my_payments_add"/>
+        <activity android:name=".ui_brands.BrandsViewActivity" android:label="@string/title_activity_brands_view"
+            android:parentActivityName=".ui_main.MainActivity"/>
+        <activity android:name=".ui_brands.BrandsAddActivity" android:label="@string/title_activity_brands_add" />
+        <activity android:name=".ui_register_login.RegisterActivity" android:label="@string/title_activity_register"/>
+        <activity android:name=".ui_register_login.LoginActivity" android:label="@string/title_activity_login"/>
+        <activity android:name=".ui_register_login.CreatePinActivity" android:label="@string/title_activity_create_pin"/>
+        <activity android:name=".ui_register_login.BlockedActivity" android:label="@string/title_activity_blocked"/>
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashScreen" />
+        <activity android:name=".ui_main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
