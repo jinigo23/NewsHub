@@ -95,15 +95,22 @@ public class MainActivity extends AppCompatActivity {
                 switch (menu.getId ( )) {
                     case CODE_BRAND:
 
-                        Bundle bundle=new Bundle ();
-                        bundle.putStringArray ("Brands_Popup", brandsPopup);
-                        bundle.putStringArray ("Customer_Popup", customerPopup);
-                        PopupDialog popupDialog=new PopupDialog ();
-                        popupDialog.setArguments (bundle);
-                        popupDialog.show (getSupportFragmentManager (), "FRAGMENT_TAG");
-
-                        /*boolean isClicked = AppDataManager.getInstance ( ).showAlert (MainActivity.this, brandsPopup);
-                        if (isClicked == false) {
+                        AppDataManager.getInstance ( ).showAlert (MainActivity.this, brandsPopup, new PopupListener ( ) {
+                            @Override
+                            public void choosenItem(int position) {
+                                switch (position){
+                                    case 1:
+                                        Intent intent=new Intent (MainActivity.this, BrandsAddActivity.class);
+                                        startActivity (intent);
+                                        break;
+                                    case 2:
+                                        Intent intent1=new Intent (MainActivity.this, BrandsViewActivity.class);
+                                        startActivity (intent1);
+                                        break;
+                                }
+                            }
+                        });
+                        /*if (isClicked == false) {
                             intent = getIntent ( );
                             startActivityForResult (intent, 1);
                             String clickedItem = intent.getStringExtra ("Clicked Item");
@@ -157,7 +164,12 @@ public class MainActivity extends AppCompatActivity {
 
                     case CODE_CUSTOMER:
 
-//                        AppDataManager.getInstance ( ).showAlert (MainActivity.this, customerPopup);
+                        AppDataManager.getInstance ( ).showAlert (MainActivity.this, customerPopup, new PopupListener ( ) {
+                            @Override
+                            public void choosenItem(int position) {
+
+                            }
+                        });
 
                         /*popupMenu.setOnMenuItemClickListener (new PopupMenu.OnMenuItemClickListener ( ) {
                             @Override

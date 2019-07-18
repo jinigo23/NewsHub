@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 
 import com.newshub.R;
 import com.newshub.model.Menu;
+import com.newshub.ui_main.PopupDialog;
+import com.newshub.ui_main.PopupListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,12 +56,16 @@ public class AppDataManager {
         return gridItems;
     }
 
-    public boolean showAlert(final Context context, final String[] popup) {
-        View view= LayoutInflater.from (context).inflate (R.layout.popup_window_list, null);
-        final ListView itemList=(ListView)view.findViewById (R.id.dialogList);
+    public void showAlert(final Context context, final String[] popup, final PopupListener listener) {
+        View view = LayoutInflater.from (context).inflate (R.layout.popup_window_list, null);
+        final ListView itemList = (ListView) view.findViewById (R.id.dialogList);
         AlertDialog.Builder builder = new AlertDialog.Builder (context);
+        final AlertDialog dialog=builder.show ();
+        builder.setView (view);
         alertList = new ArrayList<> (Arrays.asList (popup));
-        AlertAdapter adapter=new AlertAdapter (context, alertList);
+
+//        AlertAdapter adapter = new AlertAdapter (context, alertList);
+        ArrayAdapter<String> adapter=new ArrayAdapter<String> (context, android.R.layout.simple_list_item_1, alertList);
         itemList.setAdapter (adapter);
         itemList.setOnItemClickListener (new AdapterView.OnItemClickListener ( ) {
             @Override
@@ -68,17 +76,13 @@ public class AppDataManager {
                 intent.putExtra ("Clicked Item", clickedItem);
                 activity.setResult (Activity.RESULT_OK, intent);
                 Log.d ("Clicked", "Item :: "+clickedItem);
-                Toast.makeText (context, "Clicked \t"+clickedItem, Toast.LENGTH_LONG).show ();
+                Toast.makeText (context, "Clicked \t" + clickedItem, Toast.LENGTH_LONG).show ( );
+                listener.choosenItem (position);
+                dialog.dismiss ();
+//                Snackbar.make (view.findViewById (android.R.id.content), "Clicked :: "+clickedItem, Snackbar.LENGTH_LONG).setAction ("Action", null).show ();
             }
         });
         builder.setView (view);
-        /*builder.setAdapter (adapter, new DialogInterface.OnClickListener ( ) {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });*/
-        builder.show ();
-        return true;
+        builder.show ( );
     }
 }
