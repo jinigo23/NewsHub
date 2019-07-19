@@ -35,8 +35,8 @@
             android:parentActivityName=".ui_main.MainActivity"/>
         <activity android:name=".ui_brands.BrandsAddActivity" android:label="@string/title_activity_brands_add" />
         <activity android:name=".ui_register_login.RegisterActivity" android:label="@string/title_activity_register"/>
-        <activity android:name=".ui_register_login.LoginActivity" android:label="@string/title_activity_login"/>
-        <activity android:name=".ui_register_login.CreatePinActivity" android:label="@string/title_activity_create_pin"/>
+        <activity android:name=".ui_register_login.LoginActivity" android:label="@string/title_activity_login" />
+        <activity android:name=".ui_register_login.CreatePinActivity" android:label="@string/title_activity_create_pin" />
         <activity android:name=".ui_register_login.BlockedActivity" android:label="@string/title_activity_blocked"/>
         <activity
             android:name=".SplashActivity"

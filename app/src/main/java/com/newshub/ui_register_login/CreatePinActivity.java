@@ -62,6 +62,8 @@ public class CreatePinActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (pin1.getText ().toString ().length ()==1) {
                     pin2.requestFocus ();
+                }else if (pin1.getText ().toString ().length ()==0){
+                    pin.requestFocus ();
                 }
             }
 
@@ -80,6 +82,27 @@ public class CreatePinActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (pin2.getText ().toString ().length ()==1) {
                     pin3.requestFocus ();
+                }else if (pin2.getText ().toString ().length ()==0){
+                    pin1.requestFocus ();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        pin3.addTextChangedListener (new TextWatcher ( ) {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (pin3.getText ().toString ().length ()==0){
+                    pin2.requestFocus ();
                 }
             }
 
@@ -117,6 +140,8 @@ public class CreatePinActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (confirm_pin1.getText ().toString ().length ()==1) {
                     confirm_pin2.requestFocus ();
+                }else if (confirm_pin1.getText ().toString ().length ()==0){
+                    confirm_pin.requestFocus ();
                 }
             }
 
@@ -136,6 +161,8 @@ public class CreatePinActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (confirm_pin2.getText ().toString ().length ()==1) {
                     confirm_pin3.requestFocus ();
+                }else if (confirm_pin2.getText ().toString ().length ()==0){
+                    confirm_pin1.requestFocus ();
                 }
             }
 
@@ -145,6 +172,24 @@ public class CreatePinActivity extends AppCompatActivity {
             }
         });
 
+        confirm_pin3.addTextChangedListener (new TextWatcher ( ) {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (confirm_pin3.getText ().toString ().length ()==0){
+                    confirm_pin2.requestFocus ();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         btnSave = (Button)findViewById (R.id.btnSave);
 

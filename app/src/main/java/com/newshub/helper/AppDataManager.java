@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.newshub.R;
 import com.newshub.model.Menu;
-import com.newshub.ui_main.PopupDialog;
 import com.newshub.ui_main.PopupListener;
 
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class AppDataManager {
         gridItems.add (new Menu (CODE_CUSTOMER, R.drawable.icons8_customer_100, "Customers"));
         gridItems.add (new Menu (CODE_LOCATION, R.drawable.icons8_place_marker_100, "Locations"));
         gridItems.add (new Menu (CODE_CUSTOMER_REPORT, R.drawable.icons8_business_report_100, "Customer Report"));
-        gridItems.add (new Menu (CODE_MY_PAYMENT, R.drawable.icons8_customer_100, "My Payment"));
+        gridItems.add (new Menu (CODE_MY_PAYMENT, R.drawable.icons8_rupee_100, "My Payment"));
         gridItems.add (new Menu (CODE_CUSTOMER_PAYMENT, R.drawable.icons8_rupee_100, "Customer Payment"));
     }
 
@@ -60,29 +59,24 @@ public class AppDataManager {
         View view = LayoutInflater.from (context).inflate (R.layout.popup_window_list, null);
         final ListView itemList = (ListView) view.findViewById (R.id.dialogList);
         AlertDialog.Builder builder = new AlertDialog.Builder (context);
-        final AlertDialog dialog=builder.show ();
-        builder.setView (view);
         alertList = new ArrayList<> (Arrays.asList (popup));
-
-//        AlertAdapter adapter = new AlertAdapter (context, alertList);
-        ArrayAdapter<String> adapter=new ArrayAdapter<String> (context, android.R.layout.simple_list_item_1, alertList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String> (context, android.R.layout.simple_list_item_1, alertList);
         itemList.setAdapter (adapter);
+        builder.setView (view);
+        final AlertDialog dialog = builder.show ( );
         itemList.setOnItemClickListener (new AdapterView.OnItemClickListener ( ) {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Activity activity=(Activity)context;
-                String clickedItem=itemList.getItemAtPosition (position).toString ();
-                Intent intent=new Intent ();
+                Activity activity = (Activity) context;
+                String clickedItem = itemList.getItemAtPosition (position).toString ( );
+                Intent intent = new Intent ( );
                 intent.putExtra ("Clicked Item", clickedItem);
                 activity.setResult (Activity.RESULT_OK, intent);
-                Log.d ("Clicked", "Item :: "+clickedItem);
+                Log.d ("Clicked", "Item :: " + clickedItem);
                 Toast.makeText (context, "Clicked \t" + clickedItem, Toast.LENGTH_LONG).show ( );
                 listener.choosenItem (position);
-                dialog.dismiss ();
-//                Snackbar.make (view.findViewById (android.R.id.content), "Clicked :: "+clickedItem, Snackbar.LENGTH_LONG).setAction ("Action", null).show ();
+                dialog.dismiss ( );
             }
         });
-        builder.setView (view);
-        builder.show ( );
     }
 }

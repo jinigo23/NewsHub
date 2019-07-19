@@ -195,7 +195,7 @@ public class NewsDBHelper extends SQLiteOpenHelper {
             Customer customer = new Customer ( );
             customer.setCutomer_ID (cursor.getInt (cursor.getColumnIndex (CUSTOMER_ID)));
             customer.setName (cursor.getString (cursor.getColumnIndex (CUSTOMER_NAME)));
-            customer.setPhone (cursor.getInt (cursor.getColumnIndex (CUSTOMER_PHONE)));
+            customer.setPhone (cursor.getLong (cursor.getColumnIndex (CUSTOMER_PHONE)));
             customer.setJoined_Date (cursor.getString (cursor.getColumnIndex (CUSTOMER_JOINED_DATE)));
             customer.setCreated_Date (cursor.getString (cursor.getColumnIndex (CUSTOMER_CREATED_DATE)));
             customer.setUpdated_Date (cursor.getString (cursor.getColumnIndex (CUSTOMER_UPDATED_DATE)));
@@ -411,5 +411,5 @@ public class NewsDBHelper extends SQLiteOpenHelper {
 //    http://instinctcoder.com/android-studio-sqlite-search-searchview-actionbar/
 
 //    Filter Customer Report
-//    public
+
 }

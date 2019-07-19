@@ -36,6 +36,12 @@ public class LoginActivity extends AppCompatActivity {
         attempts = (TextView)findViewById (R.id.attempts);
         btnLogin = (Button)findViewById (R.id.btnLogin);
 
+//        PinTextWatcher textWatcher=new PinTextWatcher (loginPin, loginPin1, loginPin2, loginPin3);
+        /*loginPin.addTextChangedListener (new PinTextWatcher (loginPin, loginPin1, loginPin2, loginPin3));
+        loginPin1.addTextChangedListener (new PinTextWatcher (loginPin, loginPin1, loginPin2, loginPin3));
+        loginPin2.addTextChangedListener (new PinTextWatcher (loginPin, loginPin1, loginPin2, loginPin3));
+        loginPin3.addTextChangedListener (new PinTextWatcher (loginPin, loginPin1, loginPin2, loginPin3));*/
+
         loginPin.addTextChangedListener (new TextWatcher ( ) {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -64,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (loginPin1.getText ().toString ().length ()==1) {
                     loginPin2.requestFocus ();
+                }else if (loginPin1.getText ().toString ().length ()==0){
+                    loginPin.requestFocus ();
                 }
             }
 
@@ -82,6 +90,27 @@ public class LoginActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (loginPin2.getText ().toString ().length ()==1) {
                     loginPin3.requestFocus ();
+                } else if (loginPin2.getText ().toString ().length ()==0){
+                    loginPin1.requestFocus ();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        loginPin3.addTextChangedListener (new TextWatcher ( ) {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (loginPin3.getText ().toString ().length ()==0){
+                    loginPin2.requestFocus ();
                 }
             }
 
@@ -128,4 +157,33 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*public class PinText implements TextWatcher{
+
+        private View view;
+
+        public PinText(View view) {
+            this.view=view;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            String pin=editable.toString ();
+            switch (view.getId ()){
+                case 0:
+                    if (pin.length ()==1)
+
+            }
+        }
+    }*/
 }

@@ -1,3 +1,4 @@
+/*
 package com.newshub.ui_main;
 
 import android.app.AlertDialog;
@@ -57,7 +58,8 @@ public class PopupDialog extends DialogFragment {
         builder.show ();
     }
 
-    /*public PopupDialog() {
+    */
+/*public PopupDialog() {
     }
 
     public static PopupDialog newInstance(String title) {
@@ -89,5 +91,7 @@ public class PopupDialog extends DialogFragment {
         });
 
         return builder.create ();
-    }*/
+    }*//*
+
 }
+*/

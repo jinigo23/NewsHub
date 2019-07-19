@@ -1,3 +1,4 @@
+/*
 package com.newshub.helper;
 
 import android.content.Context;
@@ -54,3 +55,4 @@ public class AlertAdapter extends ArrayAdapter<String> {
         public TextView popupName;
     }
 }
+*/
